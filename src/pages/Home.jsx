@@ -1,7 +1,7 @@
 import avatar from "../assets/avatar1.png"
 import resume from "../assets/resume.pdf"
-import dotenv from 'dotenv';
-dotenv.config()
+
+const phoneNumber = import.meta.env.VITE_NUMBER;
 
 const Home = () => {
     return (
@@ -33,7 +33,10 @@ const Home = () => {
                 <a href={resume} download className="text-base">
                     Download CV <i class="fa-solid fa-download"></i>
                 </a>
-                <a href={`https://wa.me/${process.env.NUMBER}?text=Hello%20Shohjahon!`} className="border-violet-700 border rounded-2xl px-4 py-2.5">
+                <a 
+                    href={`https://wa.me/${phoneNumber}?text=Hello%20Shohjahon!`} 
+                    className="border-violet-700 border rounded-2xl px-4 py-2.5"
+                    target="_blank">
                 <i class="fa-brands fa-whatsapp"></i> Let's Talk
                 </a>
             </div>
