@@ -11,7 +11,7 @@ const Header = () => {
 
     return (
         <header className="flex items-center bg-purple-700/5 justify-between px-[23px] py-[11px] rounded-2xl">
-            <i class="fa-solid fa-code text-white/50 text-4xl"></i>
+            <i className="fa-solid fa-code text-white/50 text-4xl"></i>
             <div className="text-white/50 flex gap-5">
                 <NavLink 
                     to="/"
