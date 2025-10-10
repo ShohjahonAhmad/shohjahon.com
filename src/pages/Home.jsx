@@ -1,10 +1,24 @@
 import avatar from "../assets/avatar1.png"
 import resume from "../assets/resume.pdf"
+import LeetCodeIcon from "../utils/LeetCodeIcon";
 import NoName from "../components/NoName";
+import { useLoaderData } from "react-router-dom";
+import About from "./About";
 
 const phoneNumber = import.meta.env.VITE_NUMBER;
 
+export async function loader () {
+    // try {
+    //     const res = await fetch("https://leetcode.com/PEACEFUL7777")
+    //     const data = await res.json()
+    //     console.log(data)
+    // }catch(err){
+        return 63
+    // }
+}
+
 const Home = () => {
+    const solved = useLoaderData()
     return (
         <>
             <main className="flex flex-1 justify-between items-center min-h-[calc(100vh-58px)]">
@@ -25,6 +39,12 @@ const Home = () => {
                             rel="noopener noreferrer">
                             <i className="fa-brands fa-github text-3xl text-white/50"></i>
                         </a>
+                        <a 
+                            href = "https://leetcode.com/u/PEACEFUL7777/"
+                            target = "_blank"
+                            rel="noopener noreferrer">
+                            <LeetCodeIcon />
+                        </a>
                     </span>
                 </div>
                 <img 
@@ -43,7 +63,10 @@ const Home = () => {
                     </a>
                 </div>
             </main>
-            <NoName/>
+            <NoName solved = {solved}/>
+            <section className="h-screen flex items-center">
+                <About />
+            </section>
         </>
     )
 }

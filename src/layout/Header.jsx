@@ -10,7 +10,7 @@ const Header = () => {
 
 
     return (
-        <header className="flex items-center bg-purple-700/5 justify-between px-[23px] py-[11px] rounded-2xl">
+        <header className="flex sticky top-0 z-50 backdrop-blur-md items-center bg-purple-700/5 justify-between px-[23px] py-[11px] rounded-2xl">
             <i className="fa-solid fa-code text-white/50 text-4xl"></i>
             <div className="text-white/50 flex gap-5">
                 <NavLink 
@@ -23,6 +23,11 @@ const Header = () => {
                     to="/about"
                     style={({isActive}) => isActive ? activeStyles : null}>
                     About
+                </NavLink>
+                <NavLink 
+                    to="/portfolio"
+                    style={({isActive}) => isActive ? activeStyles : null}>
+                    Portfolio
                 </NavLink>
             </div>
         </header>
