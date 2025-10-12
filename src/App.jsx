@@ -2,7 +2,7 @@ import { Route, RouterProvider, createBrowserRouter, createRoutesFromElements } 
 import Layout from './layout/Layout'
 import Home, {loader as homeLoader} from './pages/Home'
 import About from './pages/About'
-import Portfolio from './pages/Portfolio'
+import Portfolio, {loader as portfolioLoader} from './pages/Portfolio'
 import NoName from './components/NoName'
 
 const router = createBrowserRouter(createRoutesFromElements(
@@ -10,7 +10,7 @@ const router = createBrowserRouter(createRoutesFromElements(
     <Route index element = {<Home />} loader = {homeLoader} />
     <Route path = "about" element = {<About/>} />
     <Route path = "noname" element = {<NoName/>} />
-    <Route path = "portfolio" element = {<Portfolio/>}/>
+    <Route path = "portfolio" element = {<Portfolio/>} loader = {portfolioLoader}/>
   </Route>
 ))
 

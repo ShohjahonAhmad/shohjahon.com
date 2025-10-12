@@ -1,6 +1,41 @@
 import portfolio from "../assets/portfolio.png"
+import { useLoaderData } from "react-router-dom";
+import capitalize from "../utils/capitalize";
+
+const baseUrl = import.meta.env.VITE_BASE_URL;
+
+export async function loader () {
+    try{
+        const res = await fetch(`${baseUrl}/projects`);
+        const data = await res.json();
+        console.log(data)
+        return data
+    } catch(err){
+        throw new Error(err.message)
+    }
+}
 
 const Portfolio = () => {
+    const {projects} = useLoaderData();
+
+    const portEl = projects.map(project => {
+        return <div className="flex flex-col border border-violet-700/50 rounded-xl p-[30px] w-[360px] h-[460px]">
+                    <h1 className="text-xl text-white font-bold">{project.title}</h1>
+                    <div className="h-[100px] mt-2 mb-4">
+                        <p className="text-white/50">{project.description}</p>
+                    </div>
+                    <div className="flex gap-2 mb-[22px]">
+                        {project.tags.map(tag => {
+                            return <div className="rounded-xl px-2 py-1 text-violet-700 bg-violet-700/10">
+                                        {capitalize(tag.name)}
+                                   </div>
+                        })}
+                    </div>
+                    <img    
+                        src={project.imageUrl} alt="project photo" 
+                        className="rounded-xl w-[300px] h-[200px]" />
+                </div>
+    })
     return (
         <main className="flex flex-col py-[45px]">
             <h2 className="w-fit bg-violet-700/5 text-[20px] px-4 py-2 rounded-2xl text-violet-700">🔗 Portfolio</h2>
@@ -20,80 +55,9 @@ const Portfolio = () => {
             </div>
 
             <div className="flex justify-between w-full gap-[56px] mt-[100px]">
-                <div className="flex flex-col border border-violet-700/50 rounded-xl p-[30px] w-[360px] h-[460px]">
-                    <h1 className="text-xl text-white font-bold">Move.it</h1>
-                    <div className="h-[100px] mt-2 mb-4">
-                        <p className="text-white/50">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Perferendis autem aliquam sed est rerum... </p>
-                    </div>
-                    <div className="flex gap-2 mb-[22px]">
-                        <div className="rounded-xl px-2 py-1 text-violet-700 bg-violet-700/10">
-                            React JS
-                        </div>
-                        <div className="rounded-xl px-2 py-1 text-violet-700 bg-violet-700/10">
-                            TypeScript
-                        </div>
-                    </div>
-                    <img    
-                        src={portfolio} alt="project photo" 
-                        className="rounded-xl w-[300px] h-[200px]" />
-                </div>
-
-                <div className="flex flex-col border border-violet-700/50 rounded-xl p-[30px] w-[360px] h-[460px]">
-                    <h1 className="text-xl text-white font-bold">Move.it</h1>
-                    <div className="h-[100px] mt-2 mb-4">
-                        <p className="text-white/50">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Perferendis autem aliquam sed est rerum... </p>
-                    </div>
-                    <div className="flex gap-2 mb-[22px]">
-                        <div className="rounded-xl px-2 py-1 text-violet-700 bg-violet-700/10">
-                            React JS
-                        </div>
-                        <div className="rounded-xl px-2 py-1 text-violet-700 bg-violet-700/10">
-                            TypeScript
-                        </div>
-                    </div>
-                    <img    
-                        src={portfolio} alt="project photo" 
-                        className="rounded-xl w-[300px] h-[200px]" />
-                </div>
-
-                <div className="flex flex-col border border-violet-700/50 rounded-xl p-[30px] w-[360px] h-[460px]">
-                    <h1 className="text-xl text-white font-bold">Move.it</h1>
-                    <div className="h-[100px] mt-2 mb-4">
-                    <p className="text-white/50">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Perferendis autem aliquam sed est rerum... </p>
-                    </div>
-                    <div className="flex gap-2 mb-[22px]">
-                        <div className="rounded-xl px-2 py-1 text-violet-700 bg-violet-700/10">
-                            React JS
-                        </div>
-                        <div className="rounded-xl px-2 py-1 text-violet-700 bg-violet-700/10">
-                            TypeScript
-                        </div>
-                    </div>
-                    <img    
-                        src={portfolio} alt="project photo" 
-                        className="rounded-xl w-[300px] h-[200px]" />
-                </div>
-
-                <div className="flex flex-col border border-violet-700/50 rounded-xl p-[30px] w-[360px] h-[460px]">
-                    <h1 className="text-xl text-white font-bold">Move.it</h1>
-                    <div className="h-[100px] mt-2 mb-4">
-                        <p className="text-white/50">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Perferendis autem aliquam sed est rerum... </p>
-                    </div>
-                    <div className="flex gap-2 mb-[22px]">
-                        <div className="rounded-xl px-2 py-1 text-violet-700 bg-violet-700/10">
-                            React JS
-                        </div>
-                        <div className="rounded-xl px-2 py-1 text-violet-700 bg-violet-700/10">
-                            TypeScript
-                        </div>
-                    </div>
-                    <img    
-                        src={portfolio} alt="project photo" 
-                        className="rounded-xl w-[300px] h-[200px]" />
-                </div>
-
-                
+                {portEl}
             </div>
+            
         </main>
     )
 }

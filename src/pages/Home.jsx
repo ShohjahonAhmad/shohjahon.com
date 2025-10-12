@@ -6,15 +6,16 @@ import { useLoaderData } from "react-router-dom";
 import About from "./About";
 
 const phoneNumber = import.meta.env.VITE_NUMBER;
+const baseUrl = import.meta.env.VITE_BASE_URL;
 
 export async function loader () {
-    // try {
-    //     const res = await fetch("https://leetcode.com/PEACEFUL7777")
-    //     const data = await res.json()
-    //     console.log(data)
-    // }catch(err){
+    try {
+        const res = await fetch(`${baseUrl}/leetcode`)
+        const data = await res.json()
+        return data.results[0].count
+    }catch(err){
         return 63
-    // }
+    }
 }
 
 const Home = () => {
