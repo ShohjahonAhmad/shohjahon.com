@@ -2,6 +2,7 @@ import { Route, RouterProvider, createBrowserRouter, createRoutesFromElements } 
 import Layout from './layout/Layout'
 import Home, {loader as homeLoader} from './pages/Home'
 import About from './pages/About'
+import Career from './pages/Career'
 import Portfolio, {loader as portfolioLoader} from './pages/Portfolio'
 import NoName from './components/NoName'
 
@@ -11,15 +12,14 @@ const router = createBrowserRouter(createRoutesFromElements(
     <Route path = "about" element = {<About/>} />
     <Route path = "noname" element = {<NoName/>} />
     <Route path = "portfolio" element = {<Portfolio/>} loader = {portfolioLoader}/>
+    <Route path="career" element = {<Career />} />
   </Route>
 ))
 
 export default function App() {
 
   return (
-    <RouterProvider router = {router}>
-
-    </RouterProvider>
+    <RouterProvider router = {router} />
   )
 }
 

@@ -1,4 +1,3 @@
-import portfolio from "../assets/portfolio.png"
 import { useLoaderData } from "react-router-dom";
 import capitalize from "../utils/capitalize";
 

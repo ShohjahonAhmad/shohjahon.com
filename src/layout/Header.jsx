@@ -29,6 +29,11 @@ const Header = () => {
                     style={({isActive}) => isActive ? activeStyles : null}>
                     Portfolio
                 </NavLink>
+                <NavLink 
+                    to="/career"
+                    style={({isActive}) => isActive ? activeStyles : null}>
+                    Career
+                </NavLink>
             </div>
         </header>
     )
