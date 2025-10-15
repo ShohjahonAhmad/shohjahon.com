@@ -20,17 +20,22 @@ const Header = () => {
                     Home
                 </NavLink>
                 <NavLink 
-                    to="/about"
+                    to="about"
                     style={({isActive}) => isActive ? activeStyles : null}>
                     About
                 </NavLink>
                 <NavLink 
-                    to="/portfolio"
+                    to="portfolio"
                     style={({isActive}) => isActive ? activeStyles : null}>
                     Portfolio
                 </NavLink>
                 <NavLink 
-                    to="/career"
+                    to="skills"
+                    style={({isActive}) => isActive ? activeStyles : null}>
+                    Skills
+                </NavLink>
+                <NavLink 
+                    to="career"
                     style={({isActive}) => isActive ? activeStyles : null}>
                     Career
                 </NavLink>

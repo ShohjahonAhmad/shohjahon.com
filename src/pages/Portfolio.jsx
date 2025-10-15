@@ -7,7 +7,6 @@ export async function loader () {
     try{
         const res = await fetch(`${baseUrl}/projects`);
         const data = await res.json();
-        console.log(data)
         return data
     } catch(err){
         throw new Error(err.message)
@@ -16,24 +15,30 @@ export async function loader () {
 
 const Portfolio = () => {
     const {projects} = useLoaderData();
+    console.log(projects)
 
     const portEl = projects.map(project => {
-        return <div className="flex flex-col border border-violet-700/50 rounded-xl p-[30px] w-[360px] h-[460px]">
+        return (
+                <div className="flex flex-col border border-violet-700/50 rounded-xl p-[30px] w-[360px] h-[460px]" key={project.id}>
+                    <a href={project.gitHub} target="_blank" rel="noopener noreferrer">
                     <h1 className="text-xl text-white font-bold">{project.title}</h1>
                     <div className="h-[100px] mt-2 mb-4">
                         <p className="text-white/50">{project.description}</p>
                     </div>
                     <div className="flex gap-2 mb-[22px]">
                         {project.tags.map(tag => {
-                            return <div className="rounded-xl px-2 py-1 text-violet-700 bg-violet-700/10">
+                            return <div key = {tag.id} className="rounded-xl px-2 py-1 text-violet-700 bg-violet-700/10">
                                         {capitalize(tag.name)}
                                    </div>
                         })}
                     </div>
-                    <img    
-                        src={project.imageUrl} alt="project photo" 
-                        className="rounded-xl w-[300px] h-[200px]" />
+                    </a>
+                    <video    
+                        src={project.videoUrl}
+                        className="rounded-xl w-[300px] h-[200px]"
+                        poster={project.imageUrl} controls muted> </video>
                 </div>
+            )
     })
     return (
         <main className="flex flex-col py-[45px]">

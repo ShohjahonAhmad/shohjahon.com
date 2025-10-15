@@ -4,22 +4,27 @@ import LeetCodeIcon from "../utils/LeetCodeIcon";
 import NoName from "../components/NoName";
 import { useLoaderData } from "react-router-dom";
 import About from "./About";
+import Career from "./Career";
 
 const phoneNumber = import.meta.env.VITE_NUMBER;
 const baseUrl = import.meta.env.VITE_BASE_URL;
 
-export async function loader () {
+export async function loader() {
     try {
-        const res = await fetch(`${baseUrl}/leetcode`)
-        const data = await res.json()
-        return data.results[0].count
-    }catch(err){
-        return 63
+      const careerRes = await fetch(`${baseUrl}/career`);
+      const careerData = await careerRes.json();
+  
+      const leetcodeRes = await fetch(`${baseUrl}/leetcode`);
+      const solved = (await leetcodeRes.json()).results[0].count;
+  
+      return { careerData, solved };
+    } catch (err) {
+      throw new Error("Failed to fetch data");
     }
-}
+  }
 
 const Home = () => {
-    const solved = useLoaderData()
+    const {careerData, solved} = useLoaderData()
     return (
         <>
             <main className="flex flex-1 justify-between items-center min-h-[calc(100vh-58px)]">
@@ -67,6 +72,9 @@ const Home = () => {
             <NoName solved = {solved}/>
             <section className="h-screen flex items-center">
                 <About />
+            </section>
+            <section className="">
+                <Career data = {careerData}/>
             </section>
         </>
     )
