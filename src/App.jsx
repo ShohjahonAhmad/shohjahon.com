@@ -7,15 +7,15 @@ import Skills from './pages/Skills'
 import Contacts from './pages/Contacts' 
 import Portfolio, {loader as portfolioLoader} from './pages/Portfolio'
 import NoName from './components/NoName'
+import Error from './components/Error'
 
 const router = createBrowserRouter(createRoutesFromElements(
   <Route path = "/" element = {<Layout />}>
-    <Route index element = {<Home />} loader = {homeLoader} />
+    <Route index element = {<Home />} loader = {homeLoader} errorElement={<Error/>} />
     <Route path = "about" element = {<About/>} />
-    <Route path = "noname" element = {<NoName/>} />
-    <Route path = "portfolio" element = {<Portfolio/>} loader = {portfolioLoader}/>
+    <Route path = "portfolio" element = {<Portfolio/>} loader = {portfolioLoader} errorElement={<Error/>}/>
     <Route path = "skills" element = {<Skills />} />
-    <Route path="career" element = {<Career />} loader = {careerLoader}/>
+    <Route path="career" element = {<Career />} loader = {careerLoader} errorElement={<Error/>}/>
     <Route path="contacts" element = {<Contacts />}/>
   </Route>
 ))

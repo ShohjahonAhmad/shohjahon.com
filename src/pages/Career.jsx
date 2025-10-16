@@ -6,10 +6,23 @@ const baseUrl = import.meta.env.VITE_BASE_URL
 export async function loader() {
     try{
         const res = await fetch(`${baseUrl}/career`);
+
+        if(!res) {
+            throw {
+                message: "Failed to fetch career data",
+                code: 500,
+                statusText: "Internal Server Error"
+            }
+        }
+
         const data = await res.json();
         return data;
     } catch(err) {
-        throw new Error("Couldn't load the career data")
+        throw {
+            message: err.message || "Something went wrong",
+            code: err.code || 500,
+            statusText: err.statusText || "Internal Server Error"
+        }
     }
 }
 
@@ -20,7 +33,7 @@ const Career = (props) => {
     const professionalElements = professionalCareer.map(career => {
         const start = new Date(career.start_date);
         const end = new Date(career.end_date);
-        return  (<div className="rounded-2xl p-[30px] border border-violet-700/50 w-[580px] h-[220px]" key={career.id}>
+        return  (<div className="rounded-2xl p-[30px] border border-violet-700/50 w-[580px] h-[220px] hover:border-violet-700/10 hover:bg-violet-700/10 transition-colors duration-200" key={career.id}>
                     <h1 className="font-bold text-xl text-white">{career.title}</h1>
                     <p className="mt-2 text-white/50 h-[78px] mb-[16px]">{career.description}</p>
                     <div className="flex justify-between">
@@ -33,7 +46,7 @@ const Career = (props) => {
     const academicElements = academicCareer.map(career => {
         const start = new Date(career.start_date);
         const end = new Date(career.end_date);
-        return  (<div className="rounded-2xl p-[30px] border border-violet-700/50 w-[580px] h-[220px]" key={career.id}>
+        return  (<div className="rounded-2xl p-[30px] border border-violet-700/50 w-[580px] h-[220px] hover:border-violet-700/10 hover:bg-violet-700/10 transition-colors duration-200" key={career.id}>
                     <h1 className="font-bold text-xl text-white">{career.title}</h1>
                     <p className="mt-2 text-white/50 h-[78px] mb-[16px]">{career.description}</p>
                     <div className="flex justify-between">

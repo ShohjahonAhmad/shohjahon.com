@@ -16,11 +16,24 @@ export async function loader() {
       const careerData = await careerRes.json();
   
       const leetcodeRes = await fetch(`${baseUrl}/leetcode`);
+
+      if(!leetcodeRes || !careerRes) {
+        throw {
+            message: "Failed to fetch home data",
+            code: 500,
+            statusText: "Internal Server Error"
+        }
+      }
+
       const solved = (await leetcodeRes.json()).results[0].count;
   
       return { careerData, solved };
     } catch (err) {
-      throw new Error("Failed to fetch data");
+        throw {
+            message: err.message || "Something went wrong",
+            code: err.code || 500,
+            statusText: err.statusText || "Internal Server Error"
+        }
     }
   }
 
