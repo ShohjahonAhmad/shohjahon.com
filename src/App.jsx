@@ -4,6 +4,7 @@ import Home, {loader as homeLoader} from './pages/Home'
 import About from './pages/About'
 import Career, {loader as careerLoader} from './pages/Career'
 import Skills from './pages/Skills'
+import Contacts from './pages/Contacts' 
 import Portfolio, {loader as portfolioLoader} from './pages/Portfolio'
 import NoName from './components/NoName'
 
@@ -15,6 +16,7 @@ const router = createBrowserRouter(createRoutesFromElements(
     <Route path = "portfolio" element = {<Portfolio/>} loader = {portfolioLoader}/>
     <Route path = "skills" element = {<Skills />} />
     <Route path="career" element = {<Career />} loader = {careerLoader}/>
+    <Route path="contacts" element = {<Contacts />}/>
   </Route>
 ))
 

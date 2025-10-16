@@ -39,6 +39,11 @@ const Header = () => {
                     style={({isActive}) => isActive ? activeStyles : null}>
                     Career
                 </NavLink>
+                <NavLink 
+                    to="contacts"
+                    style={({isActive}) => isActive ? activeStyles : null}>
+                    Contacts
+                </NavLink>
             </div>
         </header>
     )

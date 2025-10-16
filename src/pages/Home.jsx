@@ -5,6 +5,7 @@ import NoName from "../components/NoName";
 import { useLoaderData } from "react-router-dom";
 import About from "./About";
 import Career from "./Career";
+import Contacts from "./Contacts";
 
 const phoneNumber = import.meta.env.VITE_NUMBER;
 const baseUrl = import.meta.env.VITE_BASE_URL;
@@ -65,7 +66,7 @@ const Home = () => {
                         href={`https://wa.me/${phoneNumber}?text=Hello%20Shohjahon!`} 
                         className="border-violet-700 border rounded-2xl px-4 py-2.5"
                         target="_blank">
-                    <i className="fa-brands fa-whatsapp"></i> Let's Talk
+                    <i className="fa-brands fa-whatsapp"></i> Let's Chat
                     </a>
                 </div>
             </main>
@@ -73,8 +74,11 @@ const Home = () => {
             <section className="h-screen flex items-center">
                 <About />
             </section>
-            <section className="">
+            <section >
                 <Career data = {careerData}/>
+            </section>
+            <section >
+                <Contacts home={true} />
             </section>
         </>
     )
