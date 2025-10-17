@@ -6,7 +6,7 @@ const Header = () => {
 
   const activeStyles = {
     color: "#7B4AE2",
-    // opacity: "50%"
+    opacity: "100%"
   }
 
   const links = [
@@ -43,14 +43,14 @@ const Header = () => {
       </button>
 
       {menuOpen && (
-        <div className="absolute top-full left-0 w-full bg-zinc-900/30 backdrop-blur-lg flex flex-col items-center py-4 gap-4 lg:hidden z-50">
+        <div className="absolute top-full left-0 w-full bg-white/30 backdrop-blur-md flex flex-col items-center py-4 gap-4 lg:hidden z-50 rounded-b-2xl">
             {links.map((link) => (
             <NavLink
                 key={link.name}
                 to={link.to}
                 end={link.to === "/"}
                 style={({ isActive }) =>
-                isActive ? activeStyles : { color: "#fff", opacity: "50%" }
+                isActive ? activeStyles : { color: "#fff" }
                 }
                 onClick={() => setMenuOpen(false)}
                 className="text-white text-lg"

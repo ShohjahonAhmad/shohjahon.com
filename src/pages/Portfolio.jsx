@@ -53,7 +53,7 @@ const Portfolio = (prop) => {
 
     const portEl = displayedProjects.map(project => {
         return (
-                <div className="flex flex-col border border-violet-700/50 rounded-xl p-[30px] w-[360px] h-[460px] hover:border-violet-700/10 hover:bg-violet-700/10 transition-colors duration-200" key={project.id}>
+                <div className="basis-[24%] flex flex-col border border-violet-700/50 rounded-xl p-[30px] w-full h-[460px] hover:border-violet-700/10 hover:bg-violet-700/10 transition-colors duration-200" key={project.id}>
                     <a href={project.gitHub} target="_blank" rel="noopener noreferrer">
                     <h1 className="text-xl text-white font-bold truncate">{project.title}</h1>
                     <div className="h-[100px] mt-2 mb-4">
@@ -69,17 +69,17 @@ const Portfolio = (prop) => {
                     </a>
                     <video    
                         src={project.videoUrl}
-                        className="rounded-xl w-[300px] h-[200px]"
+                        className="rounded-xl w-full  h-[200px] cover-object"
                         poster={project.imageUrl} controls muted> </video>
                 </div>
             )
     })
     return (
-        <main className="flex flex-col py-[45px]">
+        <main className="flex flex-col py-[45px] px-4 mt-16 lg:mt-0">
             <h2 className="w-fit bg-violet-700/5 text-[20px] px-4 py-2 rounded-2xl text-violet-700">🔗 Portfolio</h2>
-            <div className="flex justify-between mt-6">
+            <div className="flex flex-col lg:flex-row md:justify-between mt-6">
                 <h1 className="font-extrabold text-5xl text-white">Projects</h1>
-                <div className="flex gap-8">
+                <div className="flex gap-8 mt-8 lg:mt-0">
                     {stacks.map(stack => {
                         return (
                             <Link 
@@ -94,7 +94,7 @@ const Portfolio = (prop) => {
                 </div>
             </div>
 
-            <div className="flex justify-between w-full gap-[56px] mt-[100px]">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10 w-full mt-[100px]">
                 {portEl}
             </div>
             

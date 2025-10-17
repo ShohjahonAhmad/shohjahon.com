@@ -5,42 +5,41 @@ import designIcon from '../assets/DesignIcon.svg'
 const NoName = (props) => {
     const experience = new Date().getFullYear() - 2024
     return (
-        <div className='flex flex-col items-center justify-center w-full my-[70px]'>
-            <div className="flex gap-20">
-                <div className="flex flex-col items-center py-10 px-5 border border-purple-700/50 rounded-xl w-[246px] h-[200px]">
-                    <img src={codeIcon} alt="code icon" className='mb-4' />
-                    <span className='text-base text-white'>{experience} year as</span>
-                    <h1 className='text-3xl text-white font-bold'>Programmer</h1>
-                </div>
-                
-                <div className="flex flex-col items-center bg-purple-700/10 py-10 px-5 border border-purple-700/50 rounded-xl w-[246px] h-[200px]">
-                    <img src={projectsIcon} alt="code icon" className='mb-4' />
-                    <span className='text-base text-white'>{experience} year of</span>
-                    <h1 className='text-3xl text-white font-bold'>LeetCode</h1>
-                </div>
+        <div className="flex flex-col items-center justify-center w-full my-16">
+    <div className="flex flex-col md:flex-row gap-8 w-full max-w-4xl">
+        {[ 
+            { icon: codeIcon, text: `${experience} year as`, title: "Programmer", bg: "" },
+            { icon: projectsIcon, text: `${experience} year of`, title: "LeetCode", bg: "bg-purple-700/10" },
+            { icon: designIcon, text: `${experience} year as`, title: "Student", bg: "" },
+        ].map((item, i) => (
+            <div
+                key={i}
+                className={`flex flex-col items-center py-8 px-5 border border-purple-700/50 rounded-xl flex-1 min-w-[200px] ${item.bg}`}
+            >
+                <img src={item.icon} className="mb-4 w-12 h-12" />
+                <span className="text-base text-white text-center">{item.text}</span>
+                <h1 className="text-2xl md:text-3xl text-white font-bold text-center">{item.title}</h1>
+            </div>
+        ))}
+    </div>
 
-                <div className="flex flex-col items-center py-10 px-5 border border-purple-700/50 rounded-xl w-[246px] h-[200px]">
-                    <img src={designIcon} alt="code icon" className='mb-4' />
-                    <span className='text-base text-white'>{experience} year as</span>
-                    <h1 className='text-3xl text-white font-bold'>Student</h1>
-                </div>
+    {/* Bottom Row */}
+    <div className="flex flex-col md:flex-row justify-center gap-8 mt-8 w-full max-w-4xl bg-purple-700/10 rounded-xl p-6">
+        {[
+            { label: "Developer", value: "Full Stack" },
+            { label: "LeetCode Problems", value: props.solved },
+            { label: "Student", value: "SWE" },
+        ].map((item, i) => (
+            <div
+                key={i}
+                className="text-purple-700 text-center flex-1 flex flex-col justify-center min-w-[150px]"
+            >
+                <span className="text-base">{item.label}</span>
+                <h1 className="text-2xl md:text-3xl font-bold">{item.value}</h1>
             </div>
-            
-            <div className='flex justify-center gap-20 mt-8 items-center bg-purple-700/10 w-[898px] h-[110px] rounded-xl'>
-                <div className='text-purple-700 text-center w-[246px] h-[200px] flex flex-col justify-center'>
-                    <span className='text-base'>Developer</span>
-                    <h1 className='text-3xl'>Full Stack</h1>
-                </div>
-                <div className='text-purple-700 text-center w-[246px] h-[200px] flex flex-col justify-center'>
-                    <span className='text-base'>Solved Problems</span>
-                    <h1 className='text-3xl'>{props.solved}</h1>
-                </div>
-                <div className='text-purple-700 text-center w-[246px] h-[200px] flex flex-col justify-center'>
-                    <span className='text-base'>Student</span>
-                    <h1 className='text-3xl'>SWE</h1>
-                </div>
-            </div>
-        </div>
+        ))}
+    </div>
+</div>
     )
 }
 

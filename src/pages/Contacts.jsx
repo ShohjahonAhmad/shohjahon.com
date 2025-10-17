@@ -15,21 +15,21 @@ const Contacts = (prop) => {
     }
 
     return (
-        <main className="flex flex-col items-center my-16">
+        <main className="flex flex-col items-start px-4 md:items-center my-16">
             <h2 className="w-fit bg-violet-700/5 text-[20px] px-4 py-2 rounded-2xl text-violet-700">
                 📬 Contacts
             </h2>
-            <h1 className="font-extrabold text-5xl text-white mt-6 mb-16">
+            <h1 className="font-extrabold text-5xl text-white mt-6 mb-8 md:mb-16">
                 Let's talk
             </h1>
-            <div className="flex items-center gap-8">
+            <div className="flex flex-col md:flex-row items-start md:items-center gap-8">
                     <a 
                         href={`https://wa.me/${phoneNumber}?text=Hello%20Shohjahon!`} 
                         className="border-violet-700 border text-xl rounded-2xl font-semibold text-violet-700 px-4 py-2.5"
                         target="_blank">
                     <i className="fa-brands fa-whatsapp text-xl"></i> Let's Chat
                     </a>
-                    <div className="flex flex-col items-center gap-1">
+                    <div className="flex flex-col items-start md:items-center gap-1">
                         <VectorIcon/>
                         <h3 className="text-violet-700/50 text-xl">E-mail:</h3>
                         <h3 className="text-white/50 text-xl mb-3">ahmshohjahon@gmail.com</h3>

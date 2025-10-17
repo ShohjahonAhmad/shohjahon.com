@@ -47,8 +47,8 @@ const Home = () => {
     const {careerData, solved, portfolio} = useLoaderData()
     return (
         <>
-            <main className="flex flex-1 justify-between items-center min-h-[calc(100vh-58px)]">
-                <div className="flex flex-1 flex-col gap-6">
+            <main className="flex flex-col lg:flex-row flex-1 justify-between items-center min-h-[calc(100vh-58px)] gap-4 lg:gap-0 px-4 lg:px-0">
+                <div className="flex flex-1 flex-col gap-6 mt-4 lg:mt-0">
                     <h2 className="w-fit bg-purple-700/5 text-[20px] px-4 py-2 rounded-2xl text-violet-700">👋 Hey!</h2>
                     <h1 className="text-5xl text-white font-extrabold">Shohjahon <br /> Ahmedov</h1>
                     <pre className="text-white/50 text-xl">Full-Stack Developer · Student</pre>
@@ -57,13 +57,13 @@ const Home = () => {
                             href = "https://www.linkedin.com/in/shohjahon-ahmedov-a5a834346/"
                             target='_blank'
                             rel="noopener noreferrer">
-                            <i className="fa-brands fa-linkedin text-3xl text-white/50"></i>
+                            <i className="fa-brands fa-linkedin text-3xl text-white/50 hover:text-white transition"></i>
                         </a>
                         <a 
                             href = "https://github.com/ShohjahonAhmad"
                             target='_blank'
                             rel="noopener noreferrer">
-                            <i className="fa-brands fa-github text-3xl text-white/50"></i>
+                            <i className="fa-brands fa-github text-3xl text-white/50 hover:text-white "></i>
                         </a>
                         <a 
                             href = "https://leetcode.com/u/PEACEFUL7777/"

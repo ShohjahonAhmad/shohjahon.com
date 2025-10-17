@@ -8,3 +8,8 @@ body {
   font-family: 'Inter', sans-serif;
 }
 
+.bg-color{
+  background-color: #6D28D90D;
+  backdrop-filter: blur(20000px);
+  opacity: 100%;
+}
