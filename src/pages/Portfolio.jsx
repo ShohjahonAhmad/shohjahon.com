@@ -29,11 +29,13 @@ export async function loader () {
     }
 }
 
-const Portfolio = () => {
-    const {projects} = useLoaderData();
+const Portfolio = (prop) => {
+    const loaderData = useLoaderData();
+    const projects = loaderData.projects || prop.portfolio.projects
     const [searchParams, setSearchParams] = useSearchParams({filter: "fullstack"});
 
     const filter = searchParams.get("filter")
+    console.log(projects)
 
     const displayedProjects = filter === null || filter === "fullstack" ? projects : projects.filter(project => project.category === filter.toUpperCase()) 
     function genereteSearchParam(key, value){
@@ -53,9 +55,9 @@ const Portfolio = () => {
         return (
                 <div className="flex flex-col border border-violet-700/50 rounded-xl p-[30px] w-[360px] h-[460px] hover:border-violet-700/10 hover:bg-violet-700/10 transition-colors duration-200" key={project.id}>
                     <a href={project.gitHub} target="_blank" rel="noopener noreferrer">
-                    <h1 className="text-xl text-white font-bold">{project.title}</h1>
+                    <h1 className="text-xl text-white font-bold truncate">{project.title}</h1>
                     <div className="h-[100px] mt-2 mb-4">
-                        <p className="text-white/50">{project.description}</p>
+                        <p className="text-white/50 overflow-hidden">{project.description}</p>
                     </div>
                     <div className="flex gap-2 mb-[22px]">
                         {project.tags.map(tag => {

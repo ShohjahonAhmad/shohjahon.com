@@ -6,6 +6,8 @@ import { useLoaderData } from "react-router-dom";
 import About from "./About";
 import Career from "./Career";
 import Contacts from "./Contacts";
+import Portfolio from "./Portfolio";
+import Skills from "./Skills";
 
 const phoneNumber = import.meta.env.VITE_NUMBER;
 const baseUrl = import.meta.env.VITE_BASE_URL;
@@ -17,7 +19,11 @@ export async function loader() {
   
       const leetcodeRes = await fetch(`${baseUrl}/leetcode`);
 
-      if(!leetcodeRes || !careerRes) {
+      const res = await fetch(`${baseUrl}/projects`);
+
+      const portfolio = await res.json();
+
+      if(!leetcodeRes || !careerRes || !res) {
         throw {
             message: "Failed to fetch home data",
             code: 500,
@@ -27,7 +33,7 @@ export async function loader() {
 
       const solved = (await leetcodeRes.json()).results[0].count;
   
-      return { careerData, solved };
+      return { careerData, solved, portfolio};
     } catch (err) {
         throw {
             message: err.message || "Something went wrong",
@@ -38,7 +44,7 @@ export async function loader() {
   }
 
 const Home = () => {
-    const {careerData, solved} = useLoaderData()
+    const {careerData, solved, portfolio} = useLoaderData()
     return (
         <>
             <main className="flex flex-1 justify-between items-center min-h-[calc(100vh-58px)]">
@@ -86,6 +92,12 @@ const Home = () => {
             <NoName solved = {solved}/>
             <section className="h-screen flex items-center">
                 <About />
+            </section>
+            <section>
+                <Portfolio portfolio = {portfolio}/>
+            </section>
+            <section>
+                <Skills/>
             </section>
             <section >
                 <Career data = {careerData}/>

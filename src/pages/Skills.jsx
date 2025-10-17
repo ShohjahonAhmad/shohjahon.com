@@ -17,17 +17,17 @@ import NodeIcon from '../utils/skills/NodeIcon'
 
 const Skills = () => {
     return (
-        <main className="flex flex-col items-center my-16">
+        <main className="flex flex-col items-left md:items-center my-16">
             <h2 className="w-fit bg-violet-700/5 text-[20px] px-4 py-2 rounded-2xl text-violet-700">
                 🧑‍💻 Skills · Experiences
             </h2>
-            <h1 className="font-extrabold text-5xl text-white mt-6 mb-[100px]">
+            <h1 className="font-extrabold text-5xl text-white mt-6 mb-8 md:mb-[100px]">
                 Technologies & Skills
             </h1>
             <h3 className="text-2xl text-white/50 mb-10">
                 Techs I use on daily basis
             </h3>
-            <div className="flex gap-8 mb-15">
+            <div className="flex flex-wrap md:justify-center gap-4 md:gap-8 mb-8 md:mb-15">
                 <ReactIcon/>
                 <JavaScriptIcon/>
                 <TypeScriptIcon/>
@@ -41,7 +41,7 @@ const Skills = () => {
             <h3 className="text-2xl text-white/50 mb-10">
                 Other techs I've worked with
             </h3>
-            <div className="flex gap-8">
+            <div className="flex flex-wrap md:justify-center gap-4 md:gap-8">
                 <MongoDBIcon/>
                 <GolangIcon/>
                 <PythonIcon/>

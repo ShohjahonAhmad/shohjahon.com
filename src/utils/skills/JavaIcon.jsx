@@ -1,4 +1,4 @@
-const JavaIcon = ({className = "w-16 h-16 font-extrabold text-violet-700/50 rounded-xl"}) => {
+const JavaIcon = ({className = "w-12 h-12 md:w-16 md:h-16 font-extrabold text-violet-700/50 transition-transform duration-300 hover:text-violet-500 hover:scale-110 rounded-xl"}) => {
     return (
         <svg xmlns="http://www.w3.org/2000/svg" className={className} xmlns:xlink="http://www.w3.org/1999/xlink" fill="currentColor" version="1.1" width="800px" height="800px" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve">
             <title>Java</title>

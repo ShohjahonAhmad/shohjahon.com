@@ -34,8 +34,8 @@ const Career = (props) => {
         const start = new Date(career.start_date);
         const end = new Date(career.end_date);
         return  (<div className="rounded-2xl p-[30px] border border-violet-700/50 w-[580px] h-[220px] hover:border-violet-700/10 hover:bg-violet-700/10 transition-colors duration-200" key={career.id}>
-                    <h1 className="font-bold text-xl text-white">{career.title}</h1>
-                    <p className="mt-2 text-white/50 h-[78px] mb-[16px]">{career.description}</p>
+                    <h1 className="font-bold text-xl text-white truncate">{career.title}</h1>
+                    <p className="mt-2 text-white/50 h-[78px] mb-[16px] overflow-hidden">{career.description}</p>
                     <div className="flex justify-between">
                         <span className="text-violet-700">{calculatePeriod(start, end)}</span>
                         <span className="text-violet-700">{stringifyDate(start, end)}{career.isCurrent && "*"}</span>
@@ -47,8 +47,8 @@ const Career = (props) => {
         const start = new Date(career.start_date);
         const end = new Date(career.end_date);
         return  (<div className="rounded-2xl p-[30px] border border-violet-700/50 w-[580px] h-[220px] hover:border-violet-700/10 hover:bg-violet-700/10 transition-colors duration-200" key={career.id}>
-                    <h1 className="font-bold text-xl text-white">{career.title}</h1>
-                    <p className="mt-2 text-white/50 h-[78px] mb-[16px]">{career.description}</p>
+                    <h1 className="font-bold text-xl text-white truncate ">{career.title}</h1>
+                    <p className="mt-2 text-white/50 h-[78px] mb-[16px] overflow-hidden">{career.description}</p>
                     <div className="flex justify-between">
                         <span className="text-violet-700">{calculatePeriod(start, end)}</span>
                         <span className="text-violet-700">{stringifyDate(start, end)}{career.isCurrent && "*"}</span>
