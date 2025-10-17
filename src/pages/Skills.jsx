@@ -12,6 +12,8 @@ import PythonIcon from '../utils/skills/PythonIcon'
 import DockerIcon from '../utils/skills/DockerIcon'
 import AWSIcon from '../utils/skills/AWSIcon'
 import JavaIcon from '../utils/skills/JavaIcon'
+import Cplusplus from '../utils/skills/Cplusplus'
+import NodeIcon from '../utils/skills/NodeIcon'
 
 const Skills = () => {
     return (
@@ -29,6 +31,7 @@ const Skills = () => {
                 <ReactIcon/>
                 <JavaScriptIcon/>
                 <TypeScriptIcon/>
+                <NodeIcon/>
                 <ExpressIcon/>
                 <GitIcon/>
                 <GitHubIcon/>
@@ -45,6 +48,8 @@ const Skills = () => {
                 <DockerIcon/>
                 <AWSIcon/>
                 <JavaIcon/>
+                <Cplusplus/>
+                
             </div>
         </main>
     )
