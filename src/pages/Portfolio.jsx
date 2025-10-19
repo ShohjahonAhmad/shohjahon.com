@@ -2,26 +2,14 @@ import { useLoaderData, Link, useSearchParams, Await, defer } from "react-router
 import React from "react";
 import capitalize from "../utils/capitalize";
 import LoadingSpinner from "../utils/LoadingSpinner";
+import { getPortfolio } from "../utils/apiCalls/api";
 
-
-const baseUrl = import.meta.env.VITE_BASE_URL;
 const stacks = [["Front-End", "frontend"], ["Full Stack", "fullstack"], ["Backend", "backend"]]
-
 
 export async function loader () {
     try{
-        const res = await fetch(`${baseUrl}/projects`);
-
-        if(!res) {
-            throw {
-                message: "Failed to fetch porfolio data",
-                code: 500,
-                statusText: "Internal Server Error"
-            }
-        }
-
-        const data = res.json();
-        return defer({projects: data})
+        const projects = getPortfolio()
+        return defer({projects})
     } catch(err){
         throw {
             message: err.message || "Something went wrong",
@@ -54,10 +42,8 @@ const Portfolio = (prop) => {
                 <Await resolve = {loaderData.projects}>
 
                 {(projects) => {
-                    console.log(projects)
                     const projectss = projects?.projects || prop.portfolio.projects            
                     const displayedProjects = filter === null || filter === "fullstack" ? projectss : projectss.filter(project => project.category === filter.toUpperCase()) 
-                    console.log(displayedProjects)
                     const portEl = displayedProjects.map(project => {
                         return (
                                 <div className="basis-[24%] flex flex-col border border-violet-700/50 rounded-xl p-[30px] w-full h-[460px] hover:border-violet-700/10 hover:bg-violet-700/10 transition-colors duration-200" key={project.id}>
@@ -68,7 +54,7 @@ const Portfolio = (prop) => {
                                     </div>
                                     <div className="flex gap-2 mb-[22px]">
                                         {project.tags.map(tag => {
-                                            return <div key = {tag.id} className="rounded-xl px-2 py-1 text-violet-700 bg-violet-700/10">
+                                            return <div key = {tag.name} className="rounded-xl px-2 py-1 text-violet-700 bg-violet-700/10">
                                                         {capitalize(tag.name)}
                                                 </div>
                                         })}

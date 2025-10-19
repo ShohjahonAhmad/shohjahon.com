@@ -6,7 +6,6 @@ import Career, {loader as careerLoader} from './pages/Career'
 import Skills from './pages/Skills'
 import Contacts from './pages/Contacts' 
 import Portfolio, {loader as portfolioLoader} from './pages/Portfolio'
-import NoName from './components/NoName'
 import Error from './components/Error'
 
 const router = createBrowserRouter(createRoutesFromElements(

@@ -1,23 +1,12 @@
 import { useLoaderData, defer, Await } from "react-router-dom";
 import React from "react";
 import {calculatePeriod, stringifyDate} from '../utils/dateCalculator'
+import { getCareer } from "../utils/apiCalls/api";
 import LoadingSpinner from "../utils/LoadingSpinner";
-
-const baseUrl = import.meta.env.VITE_BASE_URL
 
 export async function loader() {
     try{
-        const res = await fetch(`${baseUrl}/career`);
-
-        if(!res) {
-            throw {
-                message: "Failed to fetch career data",
-                code: 500,
-                statusText: "Internal Server Error"
-            }
-        }
-
-        const data = res.json();
+        const data = getCareer()
         return defer({data});
     } catch(err) {
         throw {
@@ -38,8 +27,6 @@ const Career = (props) => {
                 <Await resolve = {loaderData.data}>
                     
                     {(loaderData) => {
-                        console.log(props, "props")
-                        console.log(loaderData, "loaderdata")
                         const academicCareer = loaderData?.academicCareer || props.data.academicCareer;
                         const professionalCareer = loaderData?.professionalCareer || props.data.professionalCareer;
                         const professionalElements = professionalCareer.map(career => {
