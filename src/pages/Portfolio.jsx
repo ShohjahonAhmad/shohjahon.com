@@ -1,4 +1,4 @@
-import { useLoaderData, Link, useSearchParams, Await, defer } from "react-router-dom";
+import { useLoaderData, Link, useSearchParams, Await, defer, useRouteLoaderData } from "react-router-dom";
 import React from "react";
 import capitalize from "../utils/capitalize";
 import LoadingSpinner from "../utils/LoadingSpinner";
@@ -19,9 +19,9 @@ export async function loader () {
     }
 }
 
-const Portfolio = (prop) => {
-    const loaderData = useLoaderData();
-    const [searchParams, setSearchParams] = useSearchParams({filter: "fullstack"});
+const Portfolio = () => {
+    const {portfolio} = useRouteLoaderData("root");
+    const [searchParams] = useSearchParams({filter: "fullstack"});
     const filter = searchParams.get("filter")
     
     function genereteSearchParam(key, value){
@@ -39,10 +39,10 @@ const Portfolio = (prop) => {
 
     return (
         <React.Suspense fallback = {<LoadingSpinner/>}>
-                <Await resolve = {loaderData.projects}>
+                <Await resolve = {portfolio}>
 
                 {(projects) => {
-                    const projectss = projects?.projects || prop.portfolio.projects            
+                    const projectss = projects?.projects ?? [];           
                     const displayedProjects = filter === null || filter === "fullstack" ? projectss : projectss.filter(project => project.category === filter.toUpperCase()) 
                     const portEl = displayedProjects.map(project => {
                         return (

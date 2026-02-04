@@ -1,4 +1,4 @@
-import { useLoaderData, defer, Await } from "react-router-dom";
+import { useRouteLoaderData, defer, Await } from "react-router-dom";
 import React from "react";
 import {calculatePeriod, stringifyDate} from '../utils/dateCalculator'
 import { getCareer } from "../utils/apiCalls/api";
@@ -17,18 +17,16 @@ export async function loader() {
     }
 }
 
-const Career = (props) => {
-    const loaderData = useLoaderData()
+const Career = () => {
+    const { careerData } = useRouteLoaderData("root");
     
     return (
-       
-            
             <React.Suspense fallback = {<LoadingSpinner/>}>
-                <Await resolve = {loaderData.data}>
+                <Await resolve = {careerData}>
                     
                     {(loaderData) => {
-                        const academicCareer = loaderData?.academicCareer || props.data.academicCareer;
-                        const professionalCareer = loaderData?.professionalCareer || props.data.professionalCareer;
+                        const academicCareer = loaderData?.academicCareer ?? [];
+                        const professionalCareer = loaderData?.professionalCareer ?? [];
                         const professionalElements = professionalCareer.map(career => {
                             const start = new Date(career.start_date);
                             const end = new Date(career.end_date);

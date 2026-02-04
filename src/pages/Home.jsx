@@ -2,7 +2,7 @@ import avatar from "../assets/avatar1.png"
 import LeetCodeIcon from "../utils/LeetCodeIcon";
 import NoName from "../components/NoName";
 import { Suspense } from "react";
-import { useLoaderData, Await, defer } from "react-router-dom";
+import { Await, defer, useRouteLoaderData } from "react-router-dom";
 import About from "./About";
 import Career from "./Career";
 import Contacts from "./Contacts";
@@ -13,7 +13,6 @@ import LoadingSpinner from "../utils/LoadingSpinner";
 import downloadResume from "../utils/downloadResume";
 
 const phoneNumber = import.meta.env.VITE_NUMBER;
-const resumeUrl = import.meta.env.VITE_RESUME_URL;
 
 export async function loader() {
     try {
@@ -32,8 +31,7 @@ export async function loader() {
   }
 
 const Home = () => {
-    const {careerData, solved, portfolio} = useLoaderData();
-
+    const { careerData, solved, portfolio }  = useRouteLoaderData("root");
     return (
         <Suspense fallback={<LoadingSpinner/>}>
             <Await resolve = {Promise.all([careerData, solved, portfolio])}>
