@@ -10,9 +10,9 @@ import Portfolio from "./Portfolio";
 import Skills from "./Skills";
 import { getCareer, getLeetCode, getPortfolio } from "../utils/apiCalls/api";
 import LoadingSpinner from "../utils/LoadingSpinner";
+import downloadResume from "../utils/downloadResume";
 
 const phoneNumber = import.meta.env.VITE_NUMBER;
-const baseUrl = import.meta.env.VITE_BASE_URL;
 const resumeUrl = import.meta.env.VITE_RESUME_URL;
 
 export async function loader() {
@@ -33,7 +33,7 @@ export async function loader() {
 
 const Home = () => {
     const {careerData, solved, portfolio} = useLoaderData();
-    console.log(resumeUrl);
+
     return (
         <Suspense fallback={<LoadingSpinner/>}>
             <Await resolve = {Promise.all([careerData, solved, portfolio])}>
@@ -71,9 +71,9 @@ const Home = () => {
                                     alt="avatar"
                                     className="h-[600px] flex-1" />
                                 <div className="flex flex-1 flex-col items-end gap-2 text-violet-700">
-                                    <a href={resumeUrl} download className="text-base">
+                                    <span className="text-base cursor-pointer select-none inline-flex items-center gap-2 active:scale-[0.98] focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-500 focus-visible:ring-offset-2" onClick={downloadResume}>
                                         Download CV <i className="fa-solid fa-download"></i>
-                                    </a>
+                                    </span>
                                     <a 
                                         href={`https://wa.me/${phoneNumber}?text=Hello%20Shohjahon!`} 
                                         className="border-violet-700 border rounded-2xl px-4 py-2.5"
