@@ -1,5 +1,4 @@
 import avatar from "../assets/avatar1.png"
-import resume from "../assets/resume.pdf"
 import LeetCodeIcon from "../utils/LeetCodeIcon";
 import NoName from "../components/NoName";
 import { Suspense } from "react";
@@ -14,6 +13,7 @@ import LoadingSpinner from "../utils/LoadingSpinner";
 
 const phoneNumber = import.meta.env.VITE_NUMBER;
 const baseUrl = import.meta.env.VITE_BASE_URL;
+const resumeUrl = import.meta.env.VITE_RESUME_URL;
 
 export async function loader() {
     try {
@@ -32,7 +32,8 @@ export async function loader() {
   }
 
 const Home = () => {
-    const {careerData, solved, portfolio} = useLoaderData()
+    const {careerData, solved, portfolio} = useLoaderData();
+    console.log(resumeUrl);
     return (
         <Suspense fallback={<LoadingSpinner/>}>
             <Await resolve = {Promise.all([careerData, solved, portfolio])}>
@@ -70,7 +71,7 @@ const Home = () => {
                                     alt="avatar"
                                     className="h-[600px] flex-1" />
                                 <div className="flex flex-1 flex-col items-end gap-2 text-violet-700">
-                                    <a href={resume} download className="text-base">
+                                    <a href={resumeUrl} download className="text-base">
                                         Download CV <i className="fa-solid fa-download"></i>
                                     </a>
                                     <a 

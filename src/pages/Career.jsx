@@ -66,7 +66,7 @@ const Career = (props) => {
                                     </div>
                                     <div className="flex-1 flex flex-col mt-4 xl:mt-0 items-start xl:items-center">
                                         <h1 className="text-[32px] text-white font-extrabold text-center">Academic</h1>
-                                        <h2 className="text-2xl text-white/50 text-center mb-[65px]">2021 - now</h2>
+                                        <h2 className="text-2xl text-white/50 text-center mb-[65px]">2024 - now</h2>
                                         {academicElements}
                                     </div>
                                 </div>
