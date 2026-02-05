@@ -1,23 +1,9 @@
-import { useLoaderData, Link, useSearchParams, Await, defer, useRouteLoaderData } from "react-router-dom";
+import {Link, useSearchParams, Await, useRouteLoaderData } from "react-router-dom";
 import React from "react";
 import capitalize from "../utils/capitalize";
 import LoadingSpinner from "../utils/LoadingSpinner";
-import { getPortfolio } from "../utils/apiCalls/api";
 
 const stacks = [["Front-End", "frontend"], ["Full Stack", "fullstack"], ["Backend", "backend"]]
-
-export async function loader () {
-    try{
-        const projects = getPortfolio()
-        return defer({projects})
-    } catch(err){
-        throw {
-            message: err.message || "Something went wrong",
-            code: err.code || 500,
-            statusText: err.statusText || "Internal Server Error"
-        }
-    }
-}
 
 const Portfolio = () => {
     const {portfolio} = useRouteLoaderData("root");

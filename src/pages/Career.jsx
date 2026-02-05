@@ -1,21 +1,7 @@
-import { useRouteLoaderData, defer, Await } from "react-router-dom";
+import { useRouteLoaderData, Await } from "react-router-dom";
 import React from "react";
 import {calculatePeriod, stringifyDate} from '../utils/dateCalculator'
-import { getCareer } from "../utils/apiCalls/api";
 import LoadingSpinner from "../utils/LoadingSpinner";
-
-export async function loader() {
-    try{
-        const data = getCareer()
-        return defer({data});
-    } catch(err) {
-        throw {
-            message: err.message || "Something went wrong",
-            code: err.code || 500,
-            statusText: err.statusText || "Internal Server Error"
-        }
-    }
-}
 
 const Career = () => {
     const { careerData } = useRouteLoaderData("root");
