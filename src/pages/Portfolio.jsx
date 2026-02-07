@@ -27,22 +27,22 @@ const Portfolio = () => {
         <React.Suspense fallback = {<LoadingSpinner/>}>
                 <Await resolve = {portfolio}>
 
-                {(projects) => {
-                    const projectss = projects?.projects ?? [];           
-                    const displayedProjects = filter === null || filter === "fullstack" ? projectss : projectss.filter(project => project.category === filter.toUpperCase()) 
+                {(projectsData) => {
+                    const projects = projectsData.projects ?? [];
+                    const displayedProjects = filter === null || filter === "fullstack" ? projects : projects.filter(project => project.category === filter.toUpperCase()) 
                     const portEl = displayedProjects.map(project => {
                         return (
                                 <div className="basis-[24%] flex flex-col border border-violet-700/50 rounded-xl p-[30px] w-full h-[460px] hover:border-violet-700/10 hover:bg-violet-700/10 transition-colors duration-200" key={project.id}>
                                     <a href={project.gitHub} target="_blank" rel="noopener noreferrer">
-                                    <h1 className="text-xl text-white font-bold truncate">{project.title}</h1>
-                                    <div className="h-[100px] mt-2 mb-4">
-                                        <p className="text-white/50 overflow-hidden">{project.description}</p>
+                                    <h1 className="text-xl text-white font-bold truncate" aria-label={project.title}>{project.title}</h1>
+                                    <div className="h-[100px] mt-2 mb-4 overflow-hidden">
+                                        <p className="text-white/50 line-clamp-4">{project.description}</p>
                                     </div>
                                     <div className="flex gap-2 mb-[22px]">
                                         {project.tags.map(tag => {
                                             return <div key = {tag.name} className="rounded-xl px-2 py-1 text-violet-700 bg-violet-700/10">
                                                         {capitalize(tag.name)}
-                                                </div>
+                                                   </div>
                                         })}
                                     </div>
                                     </a>

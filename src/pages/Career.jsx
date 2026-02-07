@@ -16,12 +16,19 @@ const Career = () => {
                         const professionalElements = professionalCareer.map(career => {
                             const start = new Date(career.start_date);
                             const end = new Date(career.end_date);
-                            return  (<div className="rounded-2xl p-[30px] border border-violet-700/50 w-full h-[200px] xl:w-[580px] xl:h-[220px] hover:border-violet-700/10 hover:bg-violet-700/10 transition-colors duration-200" key={career.id}>
-                                        <h1 className="font-bold xl:text-xl text-base text-white truncate">{career.title}</h1>
-                                        <p className="mt-2 text-[14px] xl:text-base text-white/50 h-[78px] mb-[16px] overflow-hidden">{career.description}</p>
+                            return  (<div 
+                                        className="rounded-2xl p-[30px] border border-violet-700/50 w-full h-[200px] xl:w-[580px] xl:h-[220px] hover:border-violet-700/10 hover:bg-violet-700/10 transition-colors duration-200" 
+                                        key={career.id}
+                                    >
+                                        <h1 className="font-bold xl:text-xl text-base text-white truncate" aria-label={career.title}>{career.title}</h1>
+                                        <p
+                                        className="mt-2 mb-[16px] text-[14px] leading-5 xl:text-base xl:leading-6 text-white/50 overflow-hidden break-all line-clamp-3 h-[60px] xl:h-[72px]"
+                                        >
+                                            {career.description}
+                                        </p>
                                         <div className="flex justify-between text-[12px] xl:text-base">
-                                            <span className="text-violet-700">{calculatePeriod(start, end)}</span>
-                                            <span className="text-violet-700">{stringifyDate(start, end)}{career.isCurrent && "*"}</span>
+                                            <span className="text-violet-700 whitespace-nowrap">{calculatePeriod(start, end)}</span>
+                                            <span className="text-violet-700 whitespace-nowrap">{stringifyDate(start, end)}{career.isCurrent && "*"}</span>
                                         </div>
                                     </div>)
                         })
@@ -31,7 +38,7 @@ const Career = () => {
                             const end = new Date(career.end_date);
                             return  (<div className="rounded-2xl p-[30px] border border-violet-700/50 w-full h-[200px] xl:w-[580px] xl:h-[220px] hover:border-violet-700/10 hover:bg-violet-700/10 transition-colors duration-200" key={career.id}>
                                         <h1 className="font-bold xl:text-xl text-base text-white truncate">{career.title}</h1>
-                                        <p className="mt-2 text-[14px] xl:text-base text-white/50 h-[78px] mb-[16px] overflow-hidden">{career.description}</p>
+                                        <p className="mt-2 mb-[16px] text-[14px] leading-5 xl:text-base xl:leading-6 text-white/50 overflow-hidden break-all line-clamp-3 h-[60px] xl:h-[72px]">{career.description}</p>
                                         <div className="flex justify-between text-[12px] xl:text-base">
                                             <span className="text-violet-700">{calculatePeriod(start, end)}</span>
                                             <span className="text-violet-700">{stringifyDate(start, end)}{career.isCurrent && "*"}</span>
