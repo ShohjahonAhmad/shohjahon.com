@@ -10,7 +10,7 @@ import Error from './components/Error'
 import { loader } from './utils/loader'
 
 const router = createBrowserRouter(createRoutesFromElements(
-  <Route id = "root" path = "/" element = {<Layout />} loader = {loader}  errorElement={<Error/>}>
+  <Route id = "root" path = "/" element = {<Layout />} loader = {loader} shouldRevalidate={({currentUrl, nextUrl}) => currentUrl.pathname !== nextUrl.pathname}  errorElement={<Error/>}>
     <Route index element = {<Home />} />
     <Route path = "about" element = {<About/>} />
     <Route path = "portfolio" element = {<Portfolio/>}/>
