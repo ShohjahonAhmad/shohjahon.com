@@ -1,4 +1,4 @@
-import {Link, useSearchParams, Await, useRouteLoaderData } from "react-router-dom";
+import {useSearchParams, Await, useRouteLoaderData } from "react-router-dom";
 import React from "react";
 import capitalize from "../utils/capitalize";
 import LoadingSpinner from "../utils/LoadingSpinner";
@@ -7,21 +7,8 @@ const stacks = [["Front-End", "frontend"], ["Full Stack", "fullstack"], ["Backen
 
 const Portfolio = () => {
     const {portfolio} = useRouteLoaderData("root");
-    const [searchParams] = useSearchParams({filter: "fullstack"});
+    const [searchParams, setSearchParams] = useSearchParams({filter: "fullstack"});
     const filter = searchParams.get("filter")
-    
-    function genereteSearchParam(key, value){
-        const url = new URLSearchParams(searchParams)
-
-        if(value === null){
-            url.delete(key)
-        }else {
-            url.set(key, value)
-        }
-        
-
-        return "?" + url.toString()
-    }
 
     return (
         <React.Suspense fallback = {<LoadingSpinner/>}>
@@ -62,13 +49,19 @@ const Portfolio = () => {
                                 <div className="flex gap-8 mt-8 lg:mt-0">
                                     {stacks.map(stack => {
                                         return (
-                                            <Link 
-                                                className={`border w-[184px] text-violet-700/50 rounded-xl text-center py-[11px]  
+                                            <button 
+                                                className={`border w-[184px] text-violet-700/50 rounded-xl text-center py-[11px] cursor-pointer  
                                                             ${filter === stack[1] ? "bg-violet-700/10 border-violet-700/10" : ""}`}
-                                                to = {genereteSearchParam("filter", stack[1])} 
+                                                            onClick={() => {
+                                                                setSearchParams((prev) => {
+                                                                  const next = new URLSearchParams(prev);
+                                                                  next.set("filter", stack[1]);
+                                                                  return next;
+                                                                }, { replace: true });
+                                                              }}
                                                 key={stack[1]}>
                                                 {stack[0]}
-                                            </Link>
+                                            </button>
                                         )
                                     })}
                                 </div>
