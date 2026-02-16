@@ -1,0 +1,118 @@
+  /* If you see a browser focus ring on the contenteditable element */
+.tiptap:focus {
+  outline: none;
+}
+
+.tiptap {
+  background-color: rgba(17, 24, 39, 0.6); /* dark surface */
+  color: rgba(255, 255, 255, 0.92);
+  border: 1px solid rgba(139, 92, 246, 0.35); /* violet */
+  border-radius: 16px;
+  padding: 16px;
+
+  :first-child {
+    margin-top: 0;
+  }
+
+  /* Links */
+  a {
+    color: rgba(167, 139, 250, 1);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  /* List styles */
+  ul,
+  ol {
+    padding: 0 1rem;
+    margin: 1.25rem 1rem 1.25rem 0.4rem;
+  }
+
+  li p {
+    margin-top: 0.25em;
+    margin-bottom: 0.25em;
+  }
+
+  /* Headings */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    line-height: 1.15;
+    margin-top: 2rem;
+    text-wrap: pretty;
+    color: rgba(255, 255, 255, 0.98);
+  }
+
+  h1,
+  h2 {
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+  }
+
+  h1 {
+    font-size: 1.6rem;
+  }
+
+  h2 {
+    font-size: 1.35rem;
+  }
+
+  h3 {
+    font-size: 1.2rem;
+  }
+
+  h4,
+  h5,
+  h6 {
+    font-size: 1.05rem;
+  }
+
+  /* Inline code */
+  code {
+    background-color: rgba(139, 92, 246, 0.16);
+    border: 1px solid rgba(139, 92, 246, 0.25);
+    border-radius: 0.4rem;
+    color: rgba(233, 213, 255, 1);
+    font-size: 0.9em;
+    padding: 0.15em 0.35em;
+  }
+
+  /* Code block */
+  pre {
+    background: rgba(0, 0, 0, 0.45);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 0.75rem;
+    color: rgba(255, 255, 255, 0.9);
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
+      "Courier New", monospace;
+    margin: 1.25rem 0;
+    padding: 0.9rem 1rem;
+    overflow-x: auto;
+  }
+
+  pre code {
+    background: none;
+    border: 0;
+    color: inherit;
+    font-size: 0.9em;
+    padding: 0;
+  }
+
+  /* Blockquote */
+  blockquote {
+    border-left: 3px solid rgba(139, 92, 246, 0.7);
+    margin: 1.25rem 0;
+    padding-left: 1rem;
+    color: rgba(255, 255, 255, 0.75);
+  }
+
+  /* Horizontal rule */
+  hr {
+    border: none;
+    border-top: 1px solid rgba(139, 92, 246, 0.25);
+    margin: 1.75rem 0;
+  }
+}

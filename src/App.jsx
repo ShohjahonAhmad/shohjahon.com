@@ -2,6 +2,8 @@ import { Route, RouterProvider, createBrowserRouter, createRoutesFromElements } 
 import Layout from './layout/Layout'
 import Home from './pages/Home'
 import About from './pages/About'
+import Blogs from './pages/Blogs'
+import BlogWriter from './pages/BlogWriter'
 import Career from './pages/Career'
 import Skills from './pages/Skills'
 import Contacts from './pages/Contacts' 
@@ -13,10 +15,12 @@ const router = createBrowserRouter(createRoutesFromElements(
   <Route id = "root" path = "/" element = {<Layout />} loader = {loader} shouldRevalidate={() => false}  errorElement={<Error/>}>
     <Route index element = {<Home />} />
     <Route path = "about" element = {<About/>} />
-    <Route path = "portfolio" element = {<Portfolio/>}/>
+    <Route path = "portfolio" element = {<Portfolio/>} />
     <Route path = "skills" element = {<Skills />} />
-    <Route path="career" element = {<Career />}/>
-    <Route path="contacts" element = {<Contacts />}/>
+    <Route path="career" element = {<Career />} />
+    <Route path="contacts" element = {<Contacts />} />
+    <Route path="blogs" element={<Blogs/>} />
+    <Route path="write-blog" element={<BlogWriter/>} />
   </Route>
 ))
 
