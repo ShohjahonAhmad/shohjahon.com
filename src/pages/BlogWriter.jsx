@@ -5,11 +5,21 @@ import { TextStyleKit } from '@tiptap/extension-text-style'
 import { EditorContent, useEditor } from '@tiptap/react'
 import StarterKit from '@tiptap/starter-kit'
 import { MenuBar } from './MenuBar.jsx'
+import { useNavigate } from "react-router-dom";
+import { createBlog } from "../utils/apiCalls/api.js";
+import ErrorMessage from "../components/ErrorMessage.jsx";
+
 
 const extensions = [TextStyleKit, StarterKit]
 
 export default function BlogWriter() {
+    const [loading, setLoading] = React.useState(false);
+    const [error, setError] = React.useState(null);
+    const navigate = useNavigate();
+
     async function postBlog() {
+        setLoading(true)
+        setError(null)
         const jsonb = editor.getJSON();
         const title = jsonb.content[0].content[0].text;
         const slug = slugify(title, {
@@ -17,16 +27,21 @@ export default function BlogWriter() {
             strict: true,
             locale: "en"
         })
-        // await createBlog(title, slug, jsonb);
+        createBlog(title, slug, jsonb)
+        .then( () => {
+            navigate("/blogs", {replace: true})
+        })
+        .catch(err => setError(err)) 
+        .finally(setLoading(false));
     }
     const editor = useEditor({
     extensions,
     content: `
         <h2>
-        Hi there,
+        Enter Title
         </h2>
         <p>
-        This is a <em>basic</em> example of <strong>Tiptap</strong>. Sure, there are all kind of basic text styles you'd probably expect from a text editor. But wait until you see the lists:
+        Enter Text
         </p>
         `,
     })
@@ -35,14 +50,18 @@ export default function BlogWriter() {
     <>
       <MenuBar editor={editor} />
       <EditorContent editor={editor} />
+
+      <ErrorMessage error={error} onClose={() => setError(null)} />
+
       <button 
         type="button"
         onClick={postBlog}
-        disabled={!editor}
+        disabled={!editor || loading}
         className="mt-4 m-auto w-fit items-center rounded-2xl bg-violet-700/20 border border-violet-700/40 px-5 py-2.5 text-white/90 hover:bg-violet-700/30 hover:border-violet-700/60 transition disabled:opacity-40 disabled:cursor-not-allowed"
       >
-            Post
+            {loading ? "Posting..." : "Post"}
       </button>
+
     </>
   )
 }

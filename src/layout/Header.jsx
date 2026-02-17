@@ -15,6 +15,7 @@ const Header = () => {
     { name: "Portfolio", to: "portfolio" },
     { name: "Skills", to: "skills" },
     { name: "Career", to: "career" },
+    { name: "Blogs", to: "blogs"},
     { name: "Contacts", to: "contacts" },
   ]
 
