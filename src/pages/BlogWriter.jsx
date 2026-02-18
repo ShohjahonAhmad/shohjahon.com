@@ -1,11 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import slugify from "slugify";
 import './styles.css'
 import { TextStyleKit } from '@tiptap/extension-text-style'
 import { EditorContent, useEditor } from '@tiptap/react'
 import StarterKit from '@tiptap/starter-kit'
 import { MenuBar } from './MenuBar.jsx'
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { createBlog } from "../utils/apiCalls/api.js";
 import ErrorMessage from "../components/ErrorMessage.jsx";
 
@@ -16,6 +16,16 @@ export default function BlogWriter() {
     const [loading, setLoading] = React.useState(false);
     const [error, setError] = React.useState(null);
     const navigate = useNavigate();
+    const [searchParams] = useSearchParams();
+    const login = searchParams.get("login");
+    const password = searchParams.get("password");
+
+    React.useEffect(() => {
+        if(login != "peaceful" || password != "spandau"){
+            navigate("/", {replace: true});
+            console.log("salom");
+        }
+    }, [])
 
     async function postBlog() {
         setLoading(true)
