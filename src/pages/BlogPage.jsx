@@ -3,17 +3,7 @@ import { Await, useLoaderData } from "react-router-dom";
 import { EditorContent, useEditor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import LoadingSpinner from "../utils/LoadingSpinner";
-
-function formatPublishedDate(value) {
-  if (!value) return null;
-  const d = new Date(value);
-  if (Number.isNaN(d.getTime())) return null;
-  return d.toLocaleDateString(undefined, {
-    year: "numeric",
-    month: "short",
-    day: "2-digit",
-  });
-}
+import formatPublishedDate from "../utils/formatPublishedDate";
 
 function BlogViewer({ content }) {
   const editor = useEditor({
@@ -36,9 +26,7 @@ export default function BlogPage() {
     <Suspense fallback={<LoadingSpinner />}>
       <Await resolve={blogPromise}>
         {(blog) => {
-          const published = formatPublishedDate(
-            blog?.publishedAt ?? blog?.published_at ?? blog?.createdAt ?? blog?.created_at
-          );
+          const published = formatPublishedDate(blog.published);
 
           return (
             <main className="flex flex-col py-[45px] px-4 mt-16 lg:mt-0">

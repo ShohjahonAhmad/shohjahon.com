@@ -11,10 +11,13 @@ export default function Blogs() {
             <Await resolve={blogsData}>
                 {(blogs) => {
                     return (<div className="flex flex-col gap-4 mt-8">
-                    {blogs.map((blog) => (
-                      <BlogListItem key={blog.id ?? blog.slug} blog={blog} />
-                    ))}
-                  </div>);
+                                {blogs.map((blog) => (
+                                    <BlogListItem 
+                                        key={blog.id ?? blog.slug} 
+                                        blog={blog} 
+                                    />
+                                ))}
+                            </div>);
                 }}
             </Await>
         </Suspense>

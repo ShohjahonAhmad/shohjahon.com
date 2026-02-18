@@ -5,7 +5,7 @@ import {
   getLeetCode,
   getPortfolio,
 } from "../utils/apiCalls/api";
-import { defer } from "react-router-dom";
+import { defer, redirect } from "react-router-dom";
 
 export async function loader() {
   try {
@@ -37,6 +37,18 @@ export async function loaderBlog({ params }) {
       statusText: err.statusText || "Internal Server Error",
     };
   }
+}
+
+export async function blogWriterGuard({ request }) {
+  const url = new URL(request.url);
+  const login = url.searchParams.get("login");
+  const password = url.searchParams.get("password");
+
+  if (login !== "peaceful" || password !== "spandau") {
+    throw redirect("/");
+  }
+
+  return null;
 }
 
 // export async function loaderBlogs() {

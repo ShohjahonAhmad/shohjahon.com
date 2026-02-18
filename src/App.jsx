@@ -10,7 +10,7 @@ import BlogPage from './pages/BlogPage'
 import Contacts from './pages/Contacts' 
 import Portfolio from './pages/Portfolio'
 import Error from './components/Error'
-import { loader, loaderBlog} from './utils/loader'
+import { blogWriterGuard, loader, loaderBlog} from './utils/loader'
 
 const router = createBrowserRouter(createRoutesFromElements(
   <Route id = "root" path = "/" element = {<Layout />} loader = {loader} shouldRevalidate={() => false}  errorElement={<Error/>}>
@@ -22,12 +22,11 @@ const router = createBrowserRouter(createRoutesFromElements(
     <Route path="contacts" element = {<Contacts />} />
     <Route path="blogs" element={<Blogs/>}/>
     <Route path="blogs/:slug" element={<BlogPage/>} loader={loaderBlog} />
-    <Route path="write-blog" element={<BlogWriter/>} />
+    <Route path="write-blog" element={<BlogWriter/>} loader={blogWriterGuard} />
   </Route>
 ))
 
 export default function App() {
-
   return (
     <RouterProvider router = {router} />
   )

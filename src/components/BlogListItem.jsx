@@ -1,12 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-
-function formatPublishedDate(value) {
-  if (!value) return null;
-  const d = new Date(value);
-  if (Number.isNaN(d.getTime())) return null;
-  return d.toLocaleDateString(undefined, { year: "numeric", month: "short", day: "2-digit" });
-}
+import formatPublishedDate from "../utils/formatPublishedDate";
 
 export default function BlogListItem({ blog }) {
   const published = formatPublishedDate(blog.published);
@@ -20,11 +14,9 @@ export default function BlogListItem({ blog }) {
         <h3 className="text-lg font-semibold text-white truncate" title={blog.title}>
           {blog.title}
         </h3>
-        {published && (
-          <span className="shrink-0 text-sm text-white/50 whitespace-nowrap">
+        <span className="shrink-0 text-sm text-white/50 whitespace-nowrap">
             {published}
-          </span>
-        )}
+        </span>
       </div>
     </Link>
   );
